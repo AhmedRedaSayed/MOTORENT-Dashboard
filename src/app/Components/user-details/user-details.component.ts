@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UsersService } from '../../Serivces/users.service';
 import {MatTabsModule} from '@angular/material/tabs';
 import { CurrencyPipe } from '@angular/common';
+import {CdkAccordionModule} from '@angular/cdk/accordion';
+
 
 
 
@@ -10,13 +12,16 @@ import { CurrencyPipe } from '@angular/common';
 @Component({
   selector: 'app-user-details',
   standalone: true,
-  imports: [MatTabsModule,CurrencyPipe],
+  imports: [MatTabsModule,CurrencyPipe,CdkAccordionModule],
   templateUrl: './user-details.component.html',
   styleUrl: './user-details.component.css'
 })
 export class UserDetailsComponent implements OnInit {
   userId!:any;
   user!:any;
+  rentedCars!: any [];
+  ownedCars!:any [];
+
 constructor(private _ActivatedRoute:ActivatedRoute,private _usersSerivce:UsersService,private router:Router){}
 ngOnInit(): void {
 this.getId()
@@ -36,7 +41,9 @@ getUser()
     next:(data)=>
     {
       this.user = data.data
-      console.log(this.user);
+     this.rentedCars = this.user.rentedCars
+     this.ownedCars = this.user.ownedCars
+      console.log(this.rentedCars)
     }
   })
 }

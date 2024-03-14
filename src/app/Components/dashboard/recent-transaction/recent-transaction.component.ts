@@ -26,7 +26,8 @@ ngOnInit(): void {
       next:(data)=>
       {
         this.rentCars = data.data
-        console.log(this.rentCars);
+        this.rentCars.splice(5,this.rentCars.length)
+        console.log(this.rentCars)
       }
     })
   }

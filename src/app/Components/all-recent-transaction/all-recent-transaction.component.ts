@@ -23,10 +23,8 @@ getAllrentals() {
   this.rentalService.getAllRentals().subscribe({
     next:(data)=>
     {
-      console.log(data.data)
       this.recentRentedCars = data.data
-      console.log(this.recentRentedCars);
-
+      console.log(this.recentRentedCars)
     }
   })
 }

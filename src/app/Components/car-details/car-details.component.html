@@ -3,19 +3,19 @@
 
 <div routerLinkActive="router-link-active" class="row car-item py-4">
   <div class="col-md-12 car-content">
-    <div class="d-flex justify-content-between">
-      <img class="w-25 car-image" [src]=car.images[0].url alt="">
+    <div class="d-flex justify-content-between align-items-center">
+      <img class="w-25 car-image"  [src]="car.images[0]?.url ? car.images[0].url : car.images[1]?.url" alt="">
       <div>
         <div><h4 class="fw-bold car-name">{{car.brand.brand}} {{car.model}}</h4> </div>
       </div>
-      <div><p>{{car.category}}</p></div>
-      <p>{{car.plateNumber}}</p>
+      <span>{{car.category}}</span>
+      <span>{{car.plateNumber}}</span>
     </div>
   </div>
 
   <div>
 
-    <div class="container">
+    <div class="container py-3">
       <div class="row">
         <div class="col-md-4 mb-2">
           <p class="fw-bold mb-0">Area</p>
@@ -76,15 +76,15 @@
       <div class="row">
         <div class="col-md-4 mb-2">
           <p class="fw-bold mb-0 py-2">Car Inspection</p>
-          <img class="w-100 car-image h-75" [src]=car.documents.carInspection.url alt="">
+          <img class="w-100 car-image " [src]=car.documents.carInspection.url alt="">
         </div>
         <div class="col-md-4 mb-2">
           <p class="fw-bold mb-0 py-2">Car License</p>
-           <img class="w-100 car-image h-75" [src]=car.documents.carLicense.url alt="">
+           <img class=" w-100 car-image  " [src]=car.documents.carLicense.url alt="">
         </div>
         <div class="col-md-4 mb-2">
-          <p class="fw-bold mb-0 py-2">insurance</p>
-          <img class="w-100 car-image h-75" [src]=car.documents.insurance.url alt="">
+          <p class="fw-bold mb-0 py-2">Insurance</p>
+          <img class="w-100 car-image" [src]=car.documents.insurance.url alt="">
         </div>
       </div>
     </div>

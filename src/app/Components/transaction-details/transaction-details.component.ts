@@ -34,7 +34,7 @@ getRentalDetails()
     next:(data)=>
     {
       this.rentalDetails = data.data
-      console.log(data)
+      console.log(this.rentalDetails)
     }
   })
 }

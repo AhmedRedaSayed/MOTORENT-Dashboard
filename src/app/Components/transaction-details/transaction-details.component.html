@@ -1,12 +1,12 @@
 <div routerLinkActive="router-link-active" class="row car-item">
   <div class="col-md-12 car-content">
     <div class="d-flex justify-content-between">
-      <img class="w-25 car-image" src="../../../../assets/car.avif" alt="">
+      <img class="w-25 car-image h-auto" [src]=rentalDetails.car.images[0].url alt="">
       <div>
-        <div><h4 class="fw-bold car-name">GTR</h4> </div>
+        <div><h4 class="fw-bold car-name">{{rentalDetails.car.model}}</h4> </div>
       </div>
-      <div><p>Sport Car</p></div>
-      <p>#1234</p>
+      <div><p>{{rentalDetails.car.category}}</p></div>
+      <p>{{rentalDetails.car.plateNumber}}</p>
     </div>
   </div>
 
@@ -20,7 +20,7 @@
       <div class="row">
         <div class="col-md-4 mb-2">
           <p class="fw-bold mb-0">Location</p>
-          <input class="w-100" type="text" disabled value="Cairo">
+          <input class="w-100" type="text" disabled [value]="rentalDetails.car.location.city">
         </div>
         <div class="col-md-4 mb-2">
           <p class="fw-bold mb-0">Date</p>
@@ -28,7 +28,7 @@
         </div>
         <div class="col-md-4 mb-2">
           <p class="fw-bold mb-0">Time</p>
-          <input class="w-100" type="text" disabled value="Cairo">
+          <input class="w-100" type="text" disabled value="12:00">
         </div>
       </div>
     </div>
@@ -44,7 +44,7 @@
       <div class="row">
         <div class="col-md-4 mb-2">
           <p class="fw-bold mb-0">Location</p>
-          <input class="w-100" type="text" disabled value="Cairo">
+          <input class="w-100" type="text" disabled  [value]="rentalDetails.car.location.city">
         </div>
         <div class="col-md-4 mb-2">
           <p class="fw-bold mb-0">Date</p>
@@ -52,7 +52,7 @@
         </div>
         <div class="col-md-4 mb-2">
           <p class="fw-bold mb-0">Time</p>
-          <input class="w-100" type="text" disabled value="Cairo">
+          <input class="w-100" type="text" disabled value="12:00">
         </div>
       </div>
     </div>
