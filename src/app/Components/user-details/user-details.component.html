@@ -1,0 +1,180 @@
+
+
+
+<div routerLinkActive="router-link-active" class="row car-item py-4">
+  <div class="col-md-12 car-content">
+    <div class="d-flex justify-content-evenly">
+      <img class="w-25 car-image" src="../../../assets/users.jpg" alt="">
+      <div>
+        <div><h4 class="fw-bold car-name">{{user.firstName}} {{user.lastName}}</h4> </div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+
+    <div class="container py-4">
+      <div class="row">
+        <div class="col-md-4 mb-2">
+          <p class="fw-bold mb-0">Address</p>
+          <input class="w-100" type="text" disabled [value]=user.address>
+        </div>
+        <div class="col-md-4 mb-2">
+          <p class="fw-bold mb-0">Email</p>
+          <input class="w-100" type="text" disabled [value]=user.email/>
+        </div>
+        <div class="col-md-4 mb-2">
+          <p class="fw-bold mb-0">Phone</p>
+          <input class="w-100" type="text" disabled [value]=user.phone>
+        </div>
+        <div class="col-md-4 mb-2">
+          <p class="fw-bold mb-0">Driver License</p>
+          <input class="w-100" type="text" disabled [value]=user.driverLicense>
+        </div>
+      </div>
+      <mat-tab-group>
+        <mat-tab label="Owned Cars">
+          @if (user.ownedCars.length === 0) {
+            <span>This User Has No Owned Cars</span>
+          }@else {
+            <div routerLinkActive="router-link-active" class="row car-item py-4">
+              <div class="col-md-12 car-content">
+                <div class="d-flex justify-content-between">
+                  <img class="w-25 car-image" src="../../../../assets/car.avif" alt="">
+                  <div>
+                    <div><h4 class="fw-bold car-name">GTR</h4> </div>
+                  </div>
+                  <div><p>Sport Car</p></div>
+                  <p>#1234</p>
+                </div>
+              </div>
+
+              <div>
+
+                <div class="container py-4">
+                  <div class="row">
+                    <div class="col-md-4 mb-2">
+                      <p class="fw-bold mb-0">Car Model</p>
+                      <input class="w-100" type="text" disabled value="Cairo">
+                    </div>
+                    <div class="col-md-4 mb-2">
+                      <p class="fw-bold mb-0">Date</p>
+                      <input class="w-100" type="text" disabled value="Cairo">
+                    </div>
+                    <div class="col-md-4 mb-2">
+                      <p class="fw-bold mb-0">Time</p>
+                      <input class="w-100" type="text" disabled value="Cairo">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="rent">
+
+
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-4 mb-2">
+                      <p class="fw-bold mb-0">Location</p>
+                      <input class="w-100" type="text" disabled value="Cairo">
+                    </div>
+                    <div class="col-md-4 mb-2">
+                      <p class="fw-bold mb-0">Date</p>
+                      <input class="w-100" type="text" disabled value="Cairo">
+                    </div>
+                    <div class="col-md-4 mb-2">
+                      <p class="fw-bold mb-0">Time</p>
+                      <input class="w-100" type="text" disabled value="Cairo">
+                    </div>
+                  </div>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <h4 class="fw-bold"> Rental Price</h4>
+
+                  </div>
+                  <div>
+                    <h4 class="fw-bold">{{2000 | currency:'EGP'}}</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
+        </mat-tab>
+        <mat-tab label="Rented Cars">
+          @if (user.rentedCars.length ===1) {
+            <span class="text-center py-3">This User Didnt Rent Any Car</span>
+          } @else {
+            <div routerLinkActive="router-link-active" class="row car-item py-4">
+              <div class="col-md-12 car-content">
+                <div class="d-flex justify-content-between">
+                  <img class="w-25 car-image" src="../../../../assets/car.avif" alt="">
+                  <div>
+                    <div><h4 class="fw-bold car-name">GTR</h4> </div>
+                  </div>
+                  <div><p>Sport Car</p></div>
+                  <p>#1234</p>
+                </div>
+              </div>
+
+              <div>
+
+                <div class="container py-4">
+                  <div class="row">
+                    <div class="col-md-4 mb-2">
+                      <p class="fw-bold mb-0">Car Model</p>
+                      <input class="w-100" type="text" disabled value="Cairo">
+                    </div>
+                    <div class="col-md-4 mb-2">
+                      <p class="fw-bold mb-0">Date</p>
+                      <input class="w-100" type="text" disabled value="Cairo">
+                    </div>
+                    <div class="col-md-4 mb-2">
+                      <p class="fw-bold mb-0">Time</p>
+                      <input class="w-100" type="text" disabled value="Cairo">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="rent">
+
+
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-4 mb-2">
+                      <p class="fw-bold mb-0">Location</p>
+                      <input class="w-100" type="text" disabled value="Cairo">
+                    </div>
+                    <div class="col-md-4 mb-2">
+                      <p class="fw-bold mb-0">Date</p>
+                      <input class="w-100" type="text" disabled value="Cairo">
+                    </div>
+                    <div class="col-md-4 mb-2">
+                      <p class="fw-bold mb-0">Time</p>
+                      <input class="w-100" type="text" disabled value="Cairo">
+                    </div>
+                  </div>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <h4 class="fw-bold"> Rental Price</h4>
+
+                  </div>
+                  <div>
+                    <h4 class="fw-bold">{{2000 | currency:'EGP'}}</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
+        </mat-tab>
+      </mat-tab-group>
+      <button (click)="deleteUser()" class="btn btn-danger mt-4">Delete</button>
+    </div>
+  </div>
+
+
+</div>
