@@ -43,7 +43,6 @@ getUser()
       this.user = data.data
      this.rentedCars = this.user.rentedCars
      this.ownedCars = this.user.ownedCars
-      console.log(this.rentedCars)
     }
   })
 }

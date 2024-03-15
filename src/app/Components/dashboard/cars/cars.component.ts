@@ -15,7 +15,7 @@ import { FormsModule } from '@angular/forms';
 export class CarsComponent implements OnInit {
 cars!: any [];
 carSearch:string = ""
-
+selectedStatus: string = 'available';
 
 
 constructor(private carsSerivce:CarsService){
@@ -25,9 +25,9 @@ constructor(private carsSerivce:CarsService){
 ngOnInit(): void {
 this.getCars()
 }
-getCars()
+getCars(status?:string)
 {
-  this.carsSerivce.getCars().subscribe({
+  this.carsSerivce.getCars(status).subscribe({
     next:(data)=>
     {
       this.cars = data.data

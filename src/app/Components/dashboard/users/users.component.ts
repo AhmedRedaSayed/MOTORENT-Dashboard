@@ -14,9 +14,7 @@ import { FormsModule } from '@angular/forms';
 export class UsersComponent implements OnInit {
   users!:any[]
   userSearch:string = ""
-constructor(private _userSerivce:UsersService){
-
-}
+constructor(private _userSerivce:UsersService){}
 ngOnInit(): void {
   this.getUsers()
 }

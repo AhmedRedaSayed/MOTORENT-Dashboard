@@ -1,8 +1,22 @@
 
+
 <div class="container">
   <div class="row">
    <h4 class="text-center">All Cars</h4>
-      <input [(ngModel)]="carSearch" type="text" placeholder="Search" class="form-control w-75 mx-auto my-4" />
+   <div class="d-flex align-content-center col-md-12">
+    <div class="col-md-8">
+      <input [(ngModel)]="carSearch" type="text" placeholder="Search Cars" class="form-control mx-auto my-4" />
+     </div>
+     <div class="col-md-4 ms-3">
+       <select class="form-select my-4" aria-label="Default select example" [(ngModel)]="selectedStatus" (change)="getCars(selectedStatus)">
+         <option value="rented">Rented</option>
+         <option value="available">Available</option>
+         <option value="pending">Pending</option>
+       </select>
+
+    </div>
+   </div>
+
   @for (car of cars | carsSearch:carSearch; track car.id) {
     <div class="col-md-4 g-5">
       <div [routerLink]="['carDetails',car.id]" class="card car-item" style="width: 18rem;">
@@ -18,7 +32,7 @@
             <p>{{car.transmission}}</p>
             <div class="d-flex">
               <mat-icon>supervisor_account </mat-icon>
-            <p>4 People </p>
+            <p>{{car.capacity}} </p>
             </div>
           </div>
           <p class="text-muted">{{car.priceForDay |currency:'EGP ':'symbol':'1.0-0' }} / day</p>

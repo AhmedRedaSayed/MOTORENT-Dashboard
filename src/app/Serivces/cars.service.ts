@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -10,9 +10,12 @@ export class CarsService {
   constructor(private _HttpClient:HttpClient) { }
   mainApi:string = `http://localhost:3000/api/v1/cars`;
 
-  getCars():Observable<any>
-  {
-    return this._HttpClient.get(`${this.mainApi}`)
+  getCars(status?:string):Observable<any>
+  { let params = new HttpParams();
+    if (status) {
+      params = params.set('status', status);
+    }
+    return this._HttpClient.get(`${this.mainApi}`,{params})
   }
 
   getCarId(id:string):Observable<any>

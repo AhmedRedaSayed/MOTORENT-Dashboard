@@ -70,7 +70,5 @@ topRental: { name: string, value: number }[] = [];
       }
     });
   }
-
-
 }
 

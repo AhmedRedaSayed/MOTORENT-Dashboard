@@ -12,9 +12,7 @@ import { RentalService } from '../../Serivces/rental.service';
 })
 export class AllRecentTransactionComponent implements OnInit {
   recentRentedCars!: any[]
-constructor(private rentalService:RentalService){
-
-}
+constructor(private rentalService:RentalService){}
 
 ngOnInit(): void {
   this.getAllrentals()

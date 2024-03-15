@@ -4,12 +4,13 @@
 <div routerLinkActive="router-link-active" class="row car-item py-4">
   <div class="col-md-12 car-content">
     <div class="d-flex justify-content-between align-items-center">
-      <img class="w-25 car-image"  [src]="car.images[0]?.url ? car.images[0].url : car.images[1]?.url" alt="">
-      <div>
+      <img class="w-50 car-image border rounded-3"  [src]="car.images[0]?.url ? car.images[0].url : car.images[1]?.url" alt="">
+      <div class="d-flex flex-column justify-content-center align-items-center " >
         <div><h4 class="fw-bold car-name">{{car.brand.brand}} {{car.model}}</h4> </div>
+        <h5 class="mt-4 ">{{car.category}}</h5>
+      <h5 >{{car.plateNumber}}</h5>
       </div>
-      <span>{{car.category}}</span>
-      <span>{{car.plateNumber}}</span>
+
     </div>
   </div>
 
