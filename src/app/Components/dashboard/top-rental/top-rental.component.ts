@@ -11,7 +11,7 @@ import {
 import { RentalService } from "../../../Serivces/rental.service";
 
 export type ChartOptions = {
-  colors?:string[];
+
   series: ApexNonAxisChartSeries;
   chart: ApexChart;
   responsive: ApexResponsive[];
@@ -49,8 +49,8 @@ topRental: { name: string, value: number }[] = [];
             }
           }
         }
-      ],
-      colors:["#ff5733","#09c","#3357ff","#f333ff","#ff8333"]
+      ]
+
 
     };
   }

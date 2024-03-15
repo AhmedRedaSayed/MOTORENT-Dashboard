@@ -12,6 +12,9 @@ import { Router, RouterModule } from '@angular/router';
 export class SidebarComponent {
   activeLink: string = '/dashboard' ;
   constructor(private router:Router){}
+
+
+
   setActiveLink(link: string) {
     this.activeLink = link;
 }

@@ -12,16 +12,6 @@
       </a>
     </li>
     <li class="nav-item">
-      <a routerLink="/dashboard/inbox" routerLinkActive="active"
-         (click)="setActiveLink('dashboard/inbox')"
-         [class.active]="activeLink === 'dashboard/inbox'"
-         class="nav-link link-dark">
-        <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
-        <mat-icon class="pt-1" aria-hidden="false" aria-label="Example email icon" fontIcon="email"></mat-icon>
-        Inbox
-      </a>
-    </li>
-    <li class="nav-item">
       <a routerLink="/userLayout" routerLinkActive="active"
           (click)="setActiveLink('userLayout')"
          [class.active]="activeLink === 'userLayout'"
@@ -56,3 +46,14 @@
 </div>
 
 
+
+      <!-- <li class="nav-item">
+        <a routerLink="/dashboard/inbox" routerLinkActive="active"
+           (click)="setActiveLink('dashboard/inbox')"
+           [class.active]="activeLink === 'dashboard/inbox'"
+           class="nav-link link-dark">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+          <mat-icon class="pt-1" aria-hidden="false" aria-label="Example email icon" fontIcon="email"></mat-icon>
+          Inbox
+        </a>
+      </li> -->
