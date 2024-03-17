@@ -11,6 +11,7 @@ import { UserLayoutComponent } from './Components/user-layout/user-layout.compon
 import { reverseGuard } from './Guard/reverse.guard';
 import { CarDetailsComponent } from './Components/car-details/car-details.component';
 import { UserDetailsComponent } from './Components/user-details/user-details.component';
+import { InboxComponent } from './Components/dashboard/inbox/inbox.component';
 
 export const routes: Routes = [
   {path:'',canActivate:[reverseGuard],component:LoginComponent},
@@ -18,6 +19,7 @@ export const routes: Routes = [
    {path:'user',component:UsersComponent},
     {path:'',component:AllRecentTransactionComponent},
     {path:'transactionDetails/:id',component:TransactionDetailsComponent},
+    {path:'inbox',component:InboxComponent}
 
 
   ]},

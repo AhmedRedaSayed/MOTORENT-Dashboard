@@ -37,7 +37,7 @@ export class CarDetailsComponent implements OnInit {
     })
   }
 
-approveCare()
+approveCar()
 {
   this.carsSerivce.approveCar(this.carId).subscribe({
     next:(data)=>

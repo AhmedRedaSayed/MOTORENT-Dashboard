@@ -1,1 +1,56 @@
-<p>inbox works!</p>
+
+<select class="form-select"  [(ngModel)]="selectedStatus" (change)="getAllMessages(selectedStatus)" aria-label="Default select example">
+  <option selected value="">All</option>
+  <option value="pending">Pending</option>
+  <option value="solved">Solved</option>
+</select>
+
+<cdk-accordion class="example-accordion">
+  @for (message of messages; track message._id ) {
+    <cdk-accordion-item
+
+      #accordionItem="cdkAccordionItem"
+      class="example-accordion-item"
+      role="button"
+      tabindex="0"
+      [attr.id]="'accordion-header-' +  message._id"
+      [attr.aria-expanded]="accordionItem.expanded"
+      [attr.aria-controls]="'accordion-body-' + message._id">
+      <div class="example-accordion-item-header" (click)="accordionItem.toggle()">
+        {{ message.title }}
+        <span class="example-accordion-item-description">
+          Click to {{ accordionItem.expanded ? 'close' : 'open' }}
+        </span>
+      </div>
+      <div
+        class="example-accordion-item-body"
+        role="region"
+        [style.display]="accordionItem.expanded ? '' : 'none'"
+        [attr.id]="'accordion-body-' + message._id"
+        [attr.aria-labelledby]="'accordion-header-' +  message._id">
+        <div class="d-flex flex-column justify-content-between">
+          <div>
+            <img class="w-100 car-image h-auto" [src]="message.attachments ? message.attachments.url:'' "  alt="">
+          </div>
+          <div class="py-3">
+            <p>{{message.body}}</p>
+            @if(message.status === 'pending')
+            {
+              @if(replayIndex === message._id)
+              {
+                <form (ngSubmit)="replayMessage(message._id)" [formGroup]="formGroup" class=" form-container">
+                  <textarea class="form-control" formControlName="replay" placeholder="Replay The Message" cols="30" rows="5"></textarea>
+                  <button  class="btn btn-primary mt-4">Send</button>
+                </form>
+              }@else {
+
+                <button (click)="handleReplay(message._id) " class="btn btn-success mt-4">Replay</button>
+              }
+            }
+          </div>
+        </div>
+      </div>
+    </cdk-accordion-item>
+  }
+</cdk-accordion>
+

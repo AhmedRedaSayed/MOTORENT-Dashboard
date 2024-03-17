@@ -2,6 +2,7 @@ import { CurrencyPipe, DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RentalService } from '../../Serivces/rental.service';
 import { ActivatedRoute } from '@angular/router';
+import { BrandsService } from '../../Serivces/brands.service';
 
 
 
@@ -15,10 +16,12 @@ import { ActivatedRoute } from '@angular/router';
 export class TransactionDetailsComponent implements OnInit {
   rentalDetails:any
   rentId:any;
-  constructor(private rentalSerivce:RentalService,private _ActivatedRoute:ActivatedRoute){}
+  brandName!:any
+  constructor(private rentalSerivce:RentalService,private _ActivatedRoute:ActivatedRoute,private brandSerivce:BrandsService){}
   ngOnInit(): void {
     this.getId()
     this.getRentalDetails()
+
   }
 
   getId()
@@ -34,9 +37,19 @@ getRentalDetails()
     next:(data)=>
     {
       this.rentalDetails = data.data
-      console.log(this.rentalDetails)
+      console.log(this.rentalDetails.car.brand)
+      this.brandSerivce.getBrand(this.rentalDetails?.car.brand).subscribe(
+        {
+          next:(data)=>
+          {
+            this.brandName = data.data
+            console.log(this.brandName)
+          }
+        }
+      )
     }
   })
 }
+
 
 }

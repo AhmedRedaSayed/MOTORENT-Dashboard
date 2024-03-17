@@ -58,8 +58,8 @@ topRental: { name: string, value: number }[] = [];
     this.getTopRental()
   }
   updateChart() {
-    this.chartOptions.series = this.topRental.map(item => item.value);
-    this.chartOptions.labels = this.topRental.map(item => item.name);
+    this.chartOptions.series = this.topRental?.map(item => item.value);
+    this.chartOptions.labels = this.topRental?.map(item => item.name);
   }
 
   getTopRental() {

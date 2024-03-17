@@ -9,22 +9,23 @@
      <a [routerLink]="['']" > View All</a>
 
     </div>
-    @for (car of rentCars; track car._id.rental) {
+    @for (car of rentCars; track car?._id.rental) {
 
 
-        <div [routerLink]="['/dashboard/transactionDetails',car._id.rental]" routerLinkActive="router-link-active"  class="row car-item ">
+        <div [routerLink]="['/dashboard/transactionDetails',car?._id.rental]" routerLinkActive="router-link-active"  class="row car-item ">
           <div class="col-md-12 ">
             <div class=" d-flex justify-content-between ">
               <div class="d-flex align-items-center">
-                <img class=" w-25 car-image h-auto" [src]=car.car.images[0].url alt="">
+                <img class=" w-25 car-image h-auto" [src]=car?.car.images[0].url alt="">
                 <div >
-                  <h4 class="fw-bold car-name">{{car.car.brand.brand}}</h4>
-                  <p class="car-type">{{car.car.model}}</p>
+
+                  <h4 class="fw-bold car-name"></h4>
+                  <p class="car-type">{{car?.car.model}}</p>
                 </div>
               </div>
             <div>
-              <h6>{{car.car.manufacturingYear}}</h6>
-              <h6 class="car-id">{{car.car.priceForDay | currency:'EGP/':'symbol':'1.0-0'}}</h6>
+              <h6>{{car?.car.manufacturingYear}}</h6>
+              <h6 class="car-id">{{car?.car.priceForDay | currency:'EGP/':'symbol':'1.0-0'}}</h6>
             </div>
 
               </div>
