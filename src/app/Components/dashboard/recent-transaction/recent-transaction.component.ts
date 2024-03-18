@@ -23,6 +23,7 @@ export class RecentTransactionComponent implements OnInit {
 
 ngOnInit(): void {
   this.getTopRented()
+  this.getAllBrands()
 
 
 }
@@ -33,13 +34,21 @@ ngOnInit(): void {
       {
         this.rentCars = data.data
         this.rentCars?.splice(5,this.rentCars.length)
-        console.log(this.rentCars)
 
 
       }
     })
   }
 
+  getAllBrands()
+  {
+    this.brandService.getAllBrands().subscribe({
+      next:(data)=>
+      {
+        this.brands = data.data
 
+      }
+    })
+  }
 
 }

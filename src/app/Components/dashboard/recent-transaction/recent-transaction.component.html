@@ -18,9 +18,13 @@
               <div class="d-flex align-items-center">
                 <img class=" w-25 car-image h-auto" [src]=car?.car.images[0].url alt="">
                 <div >
-
-                  <h4 class="fw-bold car-name"></h4>
-                  <p class="car-type">{{car?.car.model}}</p>
+                  @for(brand of brands;track brand?._id)
+                  {
+                    @if(brand._id == car?.car.brand)
+                    {
+                      <pre class="fw-bold fs-6 car-name">{{brand?.brand}}  {{car?.car.model}}</pre>
+                    }
+                  }
                 </div>
               </div>
             <div>

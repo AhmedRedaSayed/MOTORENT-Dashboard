@@ -23,6 +23,11 @@ export class CarsService {
     return this._HttpClient.get(`${this.mainApi}/${id}`)
   }
 
+  deleteCar(id:string):Observable<any>
+  {
+    return this._HttpClient.delete(`${this.mainApi}/${id}`)
+  }
+
   approveCar(id:string):Observable<any>
   {
     return this._HttpClient.patch(`${this.mainApi}/approveCar/${id}`,null)

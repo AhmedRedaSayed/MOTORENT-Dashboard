@@ -39,17 +39,22 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-md-4 mb-2">
+        <div class="col-md-3 mb-2">
           <p class="fw-bold mb-0">Year</p>
           <input class="w-100" type="text" disabled value={{car?.manufacturingYear}}>
         </div>
-        <div class="col-md-4 mb-2">
+        <div class="col-md-3 mb-2">
           <p class="fw-bold mb-0">Tank</p>
           <input class="w-100" type="text" disabled value={{car?.tankCapacity}}L>
         </div>
-        <div class="col-md-4 mb-2">
+        <div class="col-md-3 mb-2">
           <p class="fw-bold mb-0">Transmission</p>
           <input class="w-100" type="text" disabled value={{car?.transmission}}>
+        </div>
+        <div class="col-md-3 mb-2">
+          <p class="fw-bold mb-0">Car Owner</p>
+
+          <input class="w-100" type="text" disabled [value]="carOwner?.firstName + ' ' + carOwner?.lastName">
         </div>
       </div>
     </div>
@@ -89,11 +94,11 @@
         </div>
       </div>
     </div>
+    <button (click)="deleteCar()" class="btn btn-danger">Delete</button>
     <hr>
     <div class="d-flex justify-content-between">
       <div>
         <h4 class="fw-bold"> Rental Price</h4>
-
       </div>
       <div>
         <h4 class="fw-bold">{{car?.priceForDay| currency:'EGP'}}</h4>
@@ -110,5 +115,6 @@
           <button (click)="activeCar()" class="btn btn-success">Active</button>
     }
     </div>
+
   </div>
 </div>

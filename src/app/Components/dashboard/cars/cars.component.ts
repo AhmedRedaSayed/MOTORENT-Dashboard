@@ -15,7 +15,7 @@ import { FormsModule } from '@angular/forms';
 export class CarsComponent implements OnInit {
 cars!: any [];
 carSearch:string = ""
-selectedStatus: string = 'available';
+selectedStatus: string = '';
 
 
 constructor(private carsSerivce:CarsService){

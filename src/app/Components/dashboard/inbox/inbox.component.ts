@@ -3,12 +3,13 @@ import { MessagesService } from '../../../Serivces/messages.service';
 import {CdkAccordionModule} from '@angular/cdk/accordion';
 import { MatFormField } from '@angular/material/form-field';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MessagesSearchPipe } from '../../../Pipes/messages-search.pipe';
 
 
 @Component({
   selector: 'app-inbox',
   standalone: true,
-  imports: [CdkAccordionModule,MatFormField,ReactiveFormsModule,FormsModule],
+  imports: [CdkAccordionModule,MatFormField,ReactiveFormsModule,FormsModule,MessagesSearchPipe],
   templateUrl: './inbox.component.html',
   styleUrl: './inbox.component.css'
 })
@@ -16,6 +17,7 @@ export class InboxComponent implements OnInit {
   messages!: any [];
   formGroup!:FormGroup
   replayIndex: number = -1;
+  searchUserMessages:string = ''
   constructor(private messagesService:MessagesService,formBuilder:FormBuilder){
     this.formGroup = formBuilder.group({
       replay :new FormControl('', )})
@@ -34,6 +36,7 @@ export class InboxComponent implements OnInit {
         if (selectedStatus) {
           this.messages = this.messages.filter(message => message.status === selectedStatus);
         }
+        console.log(this.messages)
 
       }
     })

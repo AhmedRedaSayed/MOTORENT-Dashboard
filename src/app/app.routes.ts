@@ -12,6 +12,8 @@ import { reverseGuard } from './Guard/reverse.guard';
 import { CarDetailsComponent } from './Components/car-details/car-details.component';
 import { UserDetailsComponent } from './Components/user-details/user-details.component';
 import { InboxComponent } from './Components/dashboard/inbox/inbox.component';
+import { ProfitLayoutComponent } from './Components/profit-layout/profit-layout.component';
+import { ProfitComponent } from './Components/profit/profit.component';
 
 export const routes: Routes = [
   {path:'',canActivate:[reverseGuard],component:LoginComponent},
@@ -19,7 +21,6 @@ export const routes: Routes = [
    {path:'user',component:UsersComponent},
     {path:'',component:AllRecentTransactionComponent},
     {path:'transactionDetails/:id',component:TransactionDetailsComponent},
-    {path:'inbox',component:InboxComponent}
 
 
   ]},
@@ -31,6 +32,12 @@ export const routes: Routes = [
   {path:"",component:UsersComponent},
   {path:'userDetails/:id',component:UserDetailsComponent},
 
+  ]},
+  {path:'inboxLayout', canActivate:[authGuard], component:UserLayoutComponent,children:[
+   {path:'',component:InboxComponent}
+  ]},
+  {path:'profitLayout', canActivate:[authGuard], component:ProfitLayoutComponent,children:[
+   {path:'',component:ProfitComponent}
   ]}
 
 ];

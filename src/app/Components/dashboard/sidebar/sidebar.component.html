@@ -12,9 +12,9 @@
       </a>
     </li>
     <li class="nav-item">
-      <a routerLink="/dashboard/inbox" routerLinkActive="active"
-         (click)="setActiveLink('dashboard/inbox')"
-         [class.active]="activeLink === 'dashboard/inbox'"
+      <a routerLink="/inboxLayout"routerLinkActive="active"
+         (click)="setActiveLink('inboxLayout')"
+         [class.active]="activeLink === 'inboxLayout'"
          class="nav-link link-dark">
         <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
         <mat-icon class="pt-1" aria-hidden="false" aria-label="Example email icon" fontIcon="email"></mat-icon>
@@ -39,6 +39,16 @@
         <svg class="bi me-2" width="16" height="16"><use xlink:href="#"></use></svg>
         <mat-icon class="pt-1" aria-hidden="false" aria-label="Example drive_eta icon" fontIcon="drive_eta"></mat-icon>
         Cars
+      </a>
+    </li>
+    <li class="nav-item">
+      <a routerLink="/profitLayout" routerLinkActive="active"
+      (click)="setActiveLink('profitLayout')"
+      [class.active]="activeLink === 'profitLayout'"
+      class="nav-link link-dark">
+        <svg class="bi me-2" width="16" height="16"><use xlink:href="#"></use></svg>
+        <mat-icon class="pt-1" aria-hidden="false" aria-label="Example drive_eta icon" fontIcon="drive_eta"></mat-icon>
+        Profits
       </a>
     </li>
   </ul>
