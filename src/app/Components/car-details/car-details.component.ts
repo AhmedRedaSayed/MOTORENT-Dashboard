@@ -16,11 +16,15 @@ export class CarDetailsComponent implements OnInit {
   car!:any;
   carOwner!:any;
   constructor(private _ActivatedRoute:ActivatedRoute,private carsSerivce:CarsService,private userSerive:UsersService,private router:Router ){}
+
+  // for calling the functions on render
   ngOnInit(): void {
 
     this.getId()
     this.getCar()
   }
+
+// getting the id from  params
   getId()
 {
   this._ActivatedRoute.paramMap.subscribe((params)=>
@@ -29,22 +33,23 @@ export class CarDetailsComponent implements OnInit {
   })
 }
 
+// getting the car by id
   getCar(){
     this.carsSerivce.getCarId(this.carId).subscribe({
       next:(data)=>
       {
         this.car = data.data
-        console.log(this.car)
         this.userSerive.getUser(this.car.ownerId).subscribe({
           next:(data)=>
           {
             this.carOwner = data.data
-            console.log(this.carOwner)
           }
         })
       }
     })
   }
+
+// delete the car
 deleteCar()
 {
   this.carsSerivce.deleteCar(this.carId).subscribe({
@@ -55,6 +60,7 @@ deleteCar()
     }
   })
 }
+// approve the car
 approveCar()
 {
   this.carsSerivce.approveCar(this.carId).subscribe({
@@ -65,6 +71,7 @@ approveCar()
     }
   })
 }
+// decline the car
 declineCar()
 {
   this.carsSerivce.declineCar(this.carId).subscribe({
@@ -75,6 +82,8 @@ declineCar()
     }
   })
 }
+
+// active the car if its approved but its not active
 activeCar()
 {
   this.carsSerivce.activeCar(this.carId).subscribe({
@@ -85,6 +94,7 @@ activeCar()
     }
   })
 }
+// suspend the car if the car have issues
 suspendCar()
 {
   this.carsSerivce.suspendCar(this.carId).subscribe({

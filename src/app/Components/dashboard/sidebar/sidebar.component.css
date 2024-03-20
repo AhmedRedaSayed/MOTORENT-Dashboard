@@ -1,3 +1,8 @@
+body
+{
+  font-family: Helvetica, Arial, sans-serif;
+}
+
 .nav-link.active {
   color: white !important;
   background-color: #3563E9;

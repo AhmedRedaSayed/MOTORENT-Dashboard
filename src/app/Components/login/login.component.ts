@@ -51,7 +51,6 @@ login ()
 
     if(response.status === 'success')
     {
-      console.log(response)
       localStorage.setItem('adminToken',response.token)
       this.router.navigate(['/dashboard'])
     }

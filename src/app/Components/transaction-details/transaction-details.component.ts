@@ -37,13 +37,11 @@ getRentalDetails()
     next:(data)=>
     {
       this.rentalDetails = data.data
-      console.log(this.rentalDetails.car.brand)
       this.brandSerivce.getBrand(this.rentalDetails?.car.brand).subscribe(
         {
           next:(data)=>
           {
             this.brandName = data.data
-            console.log(this.brandName)
           }
         }
       )

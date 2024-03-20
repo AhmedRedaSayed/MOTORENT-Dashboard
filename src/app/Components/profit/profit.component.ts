@@ -15,6 +15,7 @@ import {
 } from "ng-apexcharts";
 import { ProfitsService } from '../../Serivces/profits.service';
 import { FormsModule } from '@angular/forms';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 export type ChartOptions = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
@@ -31,7 +32,7 @@ export type ChartOptions = {
 @Component({
   selector: 'app-profit',
   standalone: true,
-  imports: [NgApexchartsModule,FormsModule],
+  imports: [NgApexchartsModule,FormsModule,MatProgressSpinner],
   templateUrl: './profit.component.html',
   styleUrl: './profit.component.css'
 })
@@ -40,6 +41,7 @@ export class ProfitComponent implements OnInit {
   public chartOptions: any;
   yearRevenue!:any[]
   totalRevenue!:any []
+  isLoading:boolean = false
   selectedYear:number =2024
 
   constructor(private profitService: ProfitsService) {}
@@ -50,10 +52,11 @@ export class ProfitComponent implements OnInit {
   }
 
   getYearRevenue(selectedYear:number) {
+    this.isLoading=true;
     this.profitService.getYearRevenue(selectedYear).subscribe({
       next: (data) => {
         this.yearRevenue = data.data;
-
+        this.isLoading = false;
         const incomeData = this.yearRevenue.map(item => item.total);
         const usersIncome = this.yearRevenue.map(item => item.total - item.revenue);
         const revenueData = this.yearRevenue.map(item => item.revenue);
@@ -188,7 +191,6 @@ export class ProfitComponent implements OnInit {
     this.profitService.getTotalRevenue().subscribe({
       next: (data) => {
         this.totalRevenue = data.data;
-        console.log(this.totalRevenue)
       }
     });
   }
