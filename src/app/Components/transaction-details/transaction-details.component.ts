@@ -21,7 +21,6 @@ export class TransactionDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.getId()
     this.getRentalDetails()
-
   }
 
   getId()
@@ -29,6 +28,7 @@ export class TransactionDetailsComponent implements OnInit {
   this._ActivatedRoute.paramMap.subscribe((params)=>
   {
     this.rentId = params.get('id')
+    this.getRentalDetails()
   })
 }
 getRentalDetails()

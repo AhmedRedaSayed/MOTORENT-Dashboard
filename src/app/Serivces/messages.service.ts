@@ -19,4 +19,8 @@ export class MessagesService {
   {
     return this._HttpClient.patch(`${this.mainApi}/${id}`, replay)
   }
+  getPendingMessages():Observable<any>
+  { let status:string = 'pending'
+    return this._HttpClient.post(`${this.mainApi}/messages-status`,{status})
+  }
 }

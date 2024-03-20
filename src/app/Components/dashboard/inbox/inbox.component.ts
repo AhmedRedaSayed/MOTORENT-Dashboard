@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { MessagesService } from '../../../Serivces/messages.service';
 import {CdkAccordionModule} from '@angular/cdk/accordion';
 import { MatFormField } from '@angular/material/form-field';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MessagesSearchPipe } from '../../../Pipes/messages-search.pipe';
+import { MatIcon } from '@angular/material/icon';
 
 
 @Component({
   selector: 'app-inbox',
   standalone: true,
-  imports: [CdkAccordionModule,MatFormField,ReactiveFormsModule,FormsModule,MessagesSearchPipe],
+  imports: [CdkAccordionModule,MatFormField,ReactiveFormsModule,FormsModule,MessagesSearchPipe,MatIcon],
   templateUrl: './inbox.component.html',
   styleUrl: './inbox.component.css'
 })
@@ -41,6 +42,8 @@ export class InboxComponent implements OnInit {
       }
     })
   }
+
+
 
   handleReplay(index:any)
   {

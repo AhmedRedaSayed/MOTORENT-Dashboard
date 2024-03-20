@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApexMarkers, ApexStroke, NgApexchartsModule } from "ng-apexcharts";
 
 import {
@@ -13,6 +13,8 @@ import {
   ApexTitleSubtitle,
   ApexYAxis
 } from "ng-apexcharts";
+import { ProfitsService } from '../../Serivces/profits.service';
+import { FormsModule } from '@angular/forms';
 export type ChartOptions = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
@@ -29,137 +31,165 @@ export type ChartOptions = {
 @Component({
   selector: 'app-profit',
   standalone: true,
-  imports: [NgApexchartsModule],
+  imports: [NgApexchartsModule,FormsModule],
   templateUrl: './profit.component.html',
   styleUrl: './profit.component.css'
 })
-export class ProfitComponent {
+export class ProfitComponent implements OnInit {
   @ViewChild("chart") chart!: ChartComponent;
-  public chartOptions: ChartOptions;
+  public chartOptions: any;
+  yearRevenue!:any[]
+  totalRevenue!:any []
+  selectedYear:number =2024
 
-  constructor() {
-    this.chartOptions = {
-      series: [
-        {
-          name: "Income",
-          type: "column",
-          data: [1.4, 2, 2.5, 1.5, 2.5, 2.8, 3.8, 4.6]
-        },
-        {
-          name: "Cashflow",
-          type: "column",
-          data: [1.1, 3, 3.1, 4, 4.1, 4.9, 6.5, 8.5]
-        },
-        {
-          name: "Revenue",
-          type: "line",
-          data: [20, 29, 37, 36, 44, 45, 50, 58]
-        }
-      ],
-      chart: {
-        height: 350,
-        type: "line",
-        stacked: false
-      },
-      dataLabels: {
-        enabled: false
-      },
-      stroke: {
-        width: [1, 1, 4]
-      },
-      title: {
-        text: "PlatForm Revenue Aggregation",
-        align: "left",
-        offsetX: 110
-      },
-      xaxis: {
-        categories: [2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016]
-      },
-      yaxis: [
-        {
-          axisTicks: {
-            show: true
-          },
-          axisBorder: {
-            show: true,
-            color: "#008FFB"
-          },
-          labels: {
-            style: {
-              colors: "#008FFB"
-            }
-          },
-          title: {
-            text: "Revenue",
-            style: {
-              color: "#008FFB"
-            }
-          },
-          tooltip: {
-            enabled: true
-          }
-        },
-        {
-          seriesName: "Income",
-          opposite: true,
-          axisTicks: {
-            show: true
-          },
-          axisBorder: {
-            show: true,
-            color: "#00E396"
-          },
-          labels: {
-            style: {
-              colors: "#00E396"
-            }
-          },
-          title: {
-            text: "Total Cars Transactions",
-            style: {
-              color: "#00E396"
-            }
-          }
-        },
-        {
-          seriesName: "Revenue",
-          opposite: true,
-          axisTicks: {
-            show: true
-          },
-          axisBorder: {
-            show: true,
-            color: "#FEB019"
-          },
-          labels: {
-            style: {
-              colors: "#FEB019"
-            }
-          },
-          title: {
-            text: "Total Income",
-            style: {
-              color: "#FEB019"
-            }
-          }
-        }
-      ],
-      tooltip: {
-        fixed: {
-          enabled: true,
-          position: "topLeft", // topRight, topLeft, bottomRight, bottomLeft
-          offsetY: 30,
-          offsetX: 60
-        }
-      },
-      legend: {
-        horizontalAlign: "left",
-        offsetX: 40
-      },
-      markers: {}, // Add markers property
-      fill: {} // Add fill property
-    };
+  constructor(private profitService: ProfitsService) {}
 
+  ngOnInit(): void {
+    this.getYearRevenue(this.selectedYear);
+    this.getTotalRevenue();
   }
 
+  getYearRevenue(selectedYear:number) {
+    this.profitService.getYearRevenue(selectedYear).subscribe({
+      next: (data) => {
+        this.yearRevenue = data.data;
+
+        const incomeData = this.yearRevenue.map(item => item.total);
+        const usersIncome = this.yearRevenue.map(item => item.total - item.revenue);
+        const revenueData = this.yearRevenue.map(item => item.revenue);
+
+
+        this.chartOptions = {
+          series: [
+            {
+              name: 'Revenue',
+              type: 'column',
+              data: revenueData
+            },
+            {
+              name: 'usersIncome',
+              type: 'column',
+              data: usersIncome
+            },
+            {
+              name: 'Income',
+              type: 'line',
+              data: incomeData
+            }
+          ],
+          chart: {
+            height: 500,
+            type: 'line',
+            stacked: false
+          },
+          dataLabels: {
+            enabled: false
+          },
+          stroke: {
+            width: [1, 1, 4]
+          },
+          title: {
+            text: 'Platform Revenue Aggregation',
+            align: 'left',
+            offsetX: 110
+          },
+          xaxis: {
+            categories: this.yearRevenue.map(item => item.monthName)
+          },
+          yaxis: [
+            {
+              axisTicks: {
+                show: true
+              },
+              axisBorder: {
+                show: true,
+                color: '#008FFB'
+              },
+              labels: {
+                style: {
+                  colors: '#008FFB'
+                }
+              },
+              title: {
+                text: 'Revenue',
+                style: {
+                  color: '#008FFB'
+                }
+              },
+              tooltip: {
+                enabled: true
+              }
+            },
+            {
+              seriesName: 'Income',
+              opposite: true,
+              axisTicks: {
+                show: true
+              },
+              axisBorder: {
+                show: true,
+                color: '#00E396'
+              },
+              labels: {
+                style: {
+                  colors: '#00E396'
+                }
+              },
+              title: {
+                text: 'Users Income',
+                style: {
+                  color: '#00E396'
+                }
+              }
+            },
+            {
+              seriesName: 'Revenue',
+              opposite: true,
+              axisTicks: {
+                show: true
+              },
+              axisBorder: {
+                show: true,
+                color: '#FEB019'
+              },
+              labels: {
+                style: {
+                  colors: '#FEB019'
+                }
+              },
+              title: {
+                text: 'Total Income',
+                style: {
+                  color: '#FEB019'
+                }
+              }
+            }
+          ],
+          tooltip: {
+            fixed: {
+              enabled: true,
+              position: 'topLeft',
+              offsetY: 30,
+              offsetX: 60
+            }
+          },
+          legend: {
+            horizontalAlign: 'left',
+            offsetX: 40
+          },
+          markers: {},
+          fill: {}
+        };
+      }
+    });
+  }
+
+  getTotalRevenue() {
+    this.profitService.getTotalRevenue().subscribe({
+      next: (data) => {
+        this.totalRevenue = data.data;
+        console.log(this.totalRevenue)
+      }
+    });
+  }
 }
