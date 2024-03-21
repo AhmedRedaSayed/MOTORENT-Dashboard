@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MessagesService } from '../../../Serivces/messages.service';
 import {CdkAccordionModule} from '@angular/cdk/accordion';
 import { MatFormField } from '@angular/material/form-field';
@@ -33,10 +33,11 @@ export class InboxComponent implements OnInit {
   getAllMessages(selectedStatus?:string)
   {
     this.isLoading = true;
-    return this.messagesService.getMessages().subscribe({
+     this.messagesService.getMessages().subscribe({
       next:(data)=>
       {
         this.messages=data.data;
+        console.log(this.messages)
         this.isLoading = false;
         if (selectedStatus) {
           this.isLoading = true;
@@ -55,6 +56,7 @@ export class InboxComponent implements OnInit {
     this.replayIndex = this.replayIndex === index ? -1 : index;
 
   }
+
   replayMessage(id:any)
   {
     this.messagesService.replayMessage(id,this.formGroup.value).subscribe({
@@ -62,6 +64,7 @@ export class InboxComponent implements OnInit {
       {
         this.replayIndex = this.replayIndex === id ? -1 : id;
         this.getAllMessages()
+
       }
     })
   }

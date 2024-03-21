@@ -23,13 +23,13 @@
         class="example-accordion-item"
         role="button"
         tabindex="0"
-        [attr.id]="'accordion-header-' +  message._id"
+        [attr.id]="'accordion-header-' +  message?._id"
         [attr.aria-expanded]="accordionItem.expanded"
-        [attr.aria-controls]="'accordion-body-' + message._id">
+        [attr.aria-controls]="'accordion-body-' + message?._id">
         <div class="example-accordion-item-header" (click)="accordionItem.toggle()">
 
-          <p>{{message.user.firstName}}  {{message.user.lastName}}</p>
-              <p>{{ message.title }}</p>
+          <p>{{message?.user?.firstName}}  {{message?.user?.lastName}}</p>
+              <p>{{ message?.title }}</p>
 
           <span class="example-accordion-item-description">
             Click to {{ accordionItem.expanded ? 'close' : 'open' }}
@@ -39,28 +39,28 @@
           class="example-accordion-item-body"
           role="region"
           [style.display]="accordionItem.expanded ? '' : 'none'"
-          [attr.id]="'accordion-body-' + message._id"
+          [attr.id]="'accordion-body-' + message?._id"
           [attr.aria-labelledby]="'accordion-header-' +  message._id">
           <div class="d-flex flex-column justify-content-between">
             <div class="d-flex justify-content-around align-items-center">
               @if (message.attachments){
 
-                <img class="w-50 car-image h-auto" [src]="message.attachments ? message.attachments.url:'' "  alt="">
+                <img class="w-50 car-image h-auto" [src]="message?.attachments ? message.attachments.url:'' "  alt="">
               }
-              <p class="mx-auto">{{message.body}}</p>
+              <p class="mx-auto">{{message?.body}}</p>
             </div>
             <div class="py-3">
               @if(message.status === 'pending')
               {
                 @if(replayIndex === message._id)
                 {
-                  <form (ngSubmit)="replayMessage(message._id)" [formGroup]="formGroup" class=" form-container">
+                  <form (ngSubmit)="replayMessage(message?._id)" [formGroup]="formGroup" class=" form-container">
                     <textarea class="form-control" formControlName="replay" placeholder="Replay The Message" cols="30" rows="5"></textarea>
                     <button  class="btn btn-primary mt-4"><mat-icon>send</mat-icon>Send</button>
                   </form>
                 }@else {
 
-                  <button (click)="handleReplay(message._id) " class="btn btn-success mt-4">Replay</button>
+                  <button (click)="handleReplay(message?._id) " class="btn btn-success mt-4">Replay</button>
                 }
               }
 

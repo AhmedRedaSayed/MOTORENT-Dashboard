@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterModule } from '@angular/router';
 import { MessagesService } from '../../../Serivces/messages.service';
 import { MatBadgeModule } from '@angular/material/badge';
-import { ChangeDetectorRef } from '@angular/core';
 
 
 
@@ -17,18 +16,19 @@ import { ChangeDetectorRef } from '@angular/core';
 export class SidebarComponent implements OnInit {
   activeLink: string = '/dashboard' ;
   pendingMessages!:number
-  constructor(private router:Router,private messsagesSerivce:MessagesService,private cdr: ChangeDetectorRef){}
+  constructor(private router:Router,private messsagesSerivce:MessagesService){}
 
   ngOnInit(): void {
     this.getpendingMessages()
   }
-getpendingMessages()
+ getpendingMessages ()
 {
   this.messsagesSerivce.getPendingMessages().subscribe({
     next:(data)=>
     {
     this.pendingMessages = data.data.length
-    this.cdr.detectChanges()
+
+
   }})
 }
 
