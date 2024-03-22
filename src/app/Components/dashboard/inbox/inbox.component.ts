@@ -8,6 +8,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 
+
 @Component({
   selector: 'app-inbox',
   standalone: true,
@@ -27,6 +28,7 @@ export class InboxComponent implements OnInit {
   }
   ngOnInit(): void {
     this.getAllMessages()
+
   }
 
   selectedStatus: string = '';
@@ -37,7 +39,6 @@ export class InboxComponent implements OnInit {
       next:(data)=>
       {
         this.messages=data.data;
-        console.log(this.messages)
         this.isLoading = false;
         if (selectedStatus) {
           this.isLoading = true;

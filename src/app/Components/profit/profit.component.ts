@@ -43,6 +43,7 @@ export class ProfitComponent implements OnInit {
   totalRevenue!:any []
   isLoading:boolean = false
   selectedYear:number =2024
+  totalYearRevenue!:number
 
   constructor(private profitService: ProfitsService) {}
 
@@ -57,6 +58,7 @@ export class ProfitComponent implements OnInit {
       next: (data) => {
         this.yearRevenue = data.data;
         this.isLoading = false;
+        this.totalYearRevenue = this.yearRevenue.reduce((acc, cur) => acc + cur.revenue, 0);
         const incomeData = this.yearRevenue.map(item => item.total);
         const usersIncome = this.yearRevenue.map(item => item.total - item.revenue);
         const revenueData = this.yearRevenue.map(item => item.revenue);
@@ -78,7 +80,8 @@ export class ProfitComponent implements OnInit {
               name: 'Income',
               type: 'line',
               data: incomeData
-            }
+            },
+
           ],
           chart: {
             height: 500,

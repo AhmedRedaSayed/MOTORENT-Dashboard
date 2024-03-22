@@ -26,12 +26,30 @@
       [tooltip]="chartOptions?.tooltip"
       [legend]="chartOptions?.legend"
     ></apx-chart>
-   <div class="total-revenue-container py-3">
-    @for (revenue of totalRevenue; track $index) {
-      <h2>Total Platform Revenue:{{ revenue.revenue }} EGP </h2>
-    }
+    <div class="total-revenue-container py-3">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th colspan="2">Total Revenue for {{ selectedYear }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Total Revenue:</td>
+            <td>{{ totalYearRevenue }} EGP</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="total-revenue-container py-3">
+     @for (revenue of totalRevenue; track $index) {
+       <h2>Total Platform Revenue:{{ revenue.revenue }} EGP </h2>
+     }
    </div>
   </div>
+
+
 
 }@else {
   <div class="spinner-container">

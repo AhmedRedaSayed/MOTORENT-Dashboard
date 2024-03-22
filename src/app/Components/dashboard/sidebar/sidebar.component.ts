@@ -27,8 +27,6 @@ export class SidebarComponent implements OnInit {
     next:(data)=>
     {
     this.pendingMessages = data.data.length
-
-
   }})
 }
 

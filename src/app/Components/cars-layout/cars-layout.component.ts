@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { SidebarComponent } from '../dashboard/sidebar/sidebar.component';
 import { NavbarComponent } from '../dashboard/navbar/navbar.component';
+import { SidebarComponent } from '../dashboard/sidebar/sidebar.component';
 
 @Component({
   selector: 'app-cars-layout',
