@@ -15,12 +15,16 @@ export class MessagesService {
     return this._HttpClient.get(`${this.mainApi}/all-messages`)
   }
 
-  replayMessage(id:string,replay:string):Observable<any>
+  replayMessage(id:any,replay:string):Observable<any>
   {
     return this._HttpClient.patch(`${this.mainApi}/${id}`, replay)
   }
   getPendingMessages():Observable<any>
   { let status:string = 'pending'
     return this._HttpClient.post(`${this.mainApi}/messages-status`,{status})
+  }
+  deleteMessage(id:any):Observable<any>
+  {
+    return this._HttpClient.delete(`${this.mainApi}/${id}`)
   }
 }

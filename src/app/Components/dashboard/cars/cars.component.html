@@ -22,7 +22,7 @@
 
     @for (car of cars | carsSearch:carSearch; track car.id) {
       <div class="col-md-4 g-5 ">
-        <div [routerLink]="['carDetails',car.id]" class="card car-item h-100">
+        <div [routerLink]="['carDetails',car.id]" class="card car-item fixed-hight">
           <div class="card-body">
             <h5 class="card-title">{{car.brand.brand}} {{car.model}}</h5>
             <p>{{car.category}}</p>

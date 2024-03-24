@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { UsersService } from '../../Serivces/users.service';
 import {MatTabsModule} from '@angular/material/tabs';
 import { CurrencyPipe } from '@angular/common';
@@ -12,7 +12,7 @@ import {CdkAccordionModule} from '@angular/cdk/accordion';
 @Component({
   selector: 'app-user-details',
   standalone: true,
-  imports: [MatTabsModule,CurrencyPipe,CdkAccordionModule],
+  imports: [MatTabsModule,CurrencyPipe,CdkAccordionModule,RouterLink],
   templateUrl: './user-details.component.html',
   styleUrl: './user-details.component.css'
 })

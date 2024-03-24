@@ -70,6 +70,15 @@ export class InboxComponent implements OnInit {
     })
   }
 
+  deleteMessage(id:string)
+  {
+    this.messagesService.deleteMessage(id).subscribe({
+      next:(data)=>
+      {
+        this.getAllMessages()
+    }})
+  }
+
 
   }
 

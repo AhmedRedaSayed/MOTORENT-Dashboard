@@ -7,7 +7,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class CarsSearchPipe implements PipeTransform {
 
   transform(cars: any[], carSearch:string): any[] {
-    return cars?.filter((car)=>car.brand.brand.toLowerCase().includes(carSearch.toLocaleLowerCase()));
+    return cars?.filter((car)=>car.brand.brand.toLowerCase().includes(carSearch.toLocaleLowerCase())||car.model.toLowerCase().includes(carSearch.toLocaleLowerCase()));
   }
 
 }
