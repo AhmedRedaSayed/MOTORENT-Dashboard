@@ -14,6 +14,7 @@ import { UserDetailsComponent } from './Components/user-details/user-details.com
 import { InboxComponent } from './Components/dashboard/inbox/inbox.component';
 import { ProfitLayoutComponent } from './Components/profit-layout/profit-layout.component';
 import { ProfitComponent } from './Components/profit/profit.component';
+import { NotFoundComponent } from './Components/not-found/not-found.component';
 
 export const routes: Routes = [
   {path:'',canActivate:[reverseGuard],component:LoginComponent},
@@ -38,7 +39,8 @@ export const routes: Routes = [
   ]},
   {path:'profitLayout', canActivate:[authGuard], component:ProfitLayoutComponent,children:[
    {path:'',component:ProfitComponent}
-  ]}
+  ]},
+  {path:"**",  component:NotFoundComponent}
 
 ];
 
